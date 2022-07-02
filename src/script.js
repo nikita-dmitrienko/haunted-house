@@ -20,6 +20,8 @@ const scene = new THREE.Scene()
  */
 const textureLoader = new THREE.TextureLoader()
 
+// const particleTexture = textureLoader.load('/textures/particles/2.png');
+
 const doorColorTexture = textureLoader.load('/textures/door/color.jpg');
 const doorAlphaTexture = textureLoader.load('/textures/door/alpha.jpg');
 const doorAmbientOcclusionTexture = textureLoader.load('/textures/door/ambientOcclusion.jpg');
@@ -54,6 +56,44 @@ grassColorTexture.wrapT = THREE.RepeatWrapping;
 grassAmbientOcclusionTexture.wrapT = THREE.RepeatWrapping;
 grassNormalTexture.wrapT = THREE.RepeatWrapping;
 grassRoughnessTexture.wrapT = THREE.RepeatWrapping;
+
+
+// Particles
+// const particlesGeometry = new THREE.BufferGeometry();
+// const particlesMaterial = new THREE.PointsMaterial({
+//     size: 0.02,
+//     sizeAttenuation: true,
+//     color: '#ff88cc',
+//     transparent: true,
+//     alphaMap: particleTexture,
+//     // alphaTest: 0.001,
+//     // depthTest: false,
+//     depthWrite: false,
+//     blending: THREE.AdditiveBlending,
+//     vertexColors: true,
+// });
+
+
+// const verticesColl = [];
+// const colorsColl = [];
+// for (let i = 0; i <= 5000; i += 1) {
+//     const x = Math.random() - 0.5 * Math.random() * 5;
+//     const y = Math.random() - 0.5 * Math.random() * 5;
+//     const z = Math.random() - 0.5 * Math.random() * 5;
+//     verticesColl.push(x, y, z)
+//     colorsColl.push(Math.random());
+// };
+
+
+// const vertices = new Float32Array(verticesColl);
+// const colors = new Float32Array(colorsColl);
+
+// particlesGeometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+// particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+
+// const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+// scene.add(particles);
 
 
 // Fog
@@ -327,6 +367,19 @@ const tick = () => {
     ghost3.position.x = Math.cos(ghost3Angle) * (7 + Math.sin(elapsedTime * 0.32));
     ghost3.position.z = Math.sin(ghost3Angle) * (7 + Math.sin(elapsedTime * 0.4));
     ghost3.position.y = Math.sin(elapsedTime * 3) * Math.sin(elapsedTime * 2.5);
+
+
+    // Update Particles
+    // particles.rotation.y = elapsedTime * 0.1;
+    // for (let i = 0; i <= 5000; i += 1) {
+    //     const i3 = i * 3;
+
+    //     const x = particlesGeometry.attributes.position.array[i3];
+    //     particlesGeometry.attributes.position.array[i3 + 1] = Math.sin(elapsedTime + x);
+    // }
+    // particlesGeometry.attributes.position.needsUpdate = true;
+
+
 
     // Update controls
     controls.update()
